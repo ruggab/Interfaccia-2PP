@@ -476,7 +476,7 @@ public class ProductsWebService {
 
 				arraytagcol.put(varcolorejson);
 				arraytagcol.put(vartagliejson);
-
+    
 				varJsonObject.put("attributes", arraytagcol);
 
 				HttpEntity<String> requestVAR = new HttpEntity<String>(varJsonObject.toString(), headers);
