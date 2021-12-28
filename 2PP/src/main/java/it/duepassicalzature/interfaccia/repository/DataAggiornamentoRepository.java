@@ -1,14 +1,13 @@
 package it.duepassicalzature.interfaccia.repository;
 
-import it.duepassicalzature.interfaccia.model.DataUltimoAggiornamento;
-import it.duepassicalzature.interfaccia.model.ICategoriesWeb;
-import it.duepassicalzature.interfaccia.model.IProductsWeb;
-import it.duepassicalzature.interfaccia.model.ProductsWeb;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Date;
-import java.util.List;
+import it.duepassicalzature.interfaccia.model.DataUltimoAggiornamento;
+import it.duepassicalzature.interfaccia.model.ICategoriesWeb;
+import it.duepassicalzature.interfaccia.model.IProductsWeb;
 
 public interface DataAggiornamentoRepository extends JpaRepository<DataUltimoAggiornamento, Integer> {
 

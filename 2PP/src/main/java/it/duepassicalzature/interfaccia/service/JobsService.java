@@ -79,7 +79,7 @@ public class JobsService {
 
 	}
 
-	// @Scheduled(cron = "${aggiornamentoImmaginiProdotti}", zone = "Europe/Paris")
+	//@Scheduled(cron = "${aggiornamentoImmaginiProdotti}", zone = "Europe/Paris")
 	public void aggiornaImmagini() throws IOException {
 
 		// Aggiornamento nuove immagini
@@ -88,7 +88,7 @@ public class JobsService {
 
 	}
 
-	// @Scheduled(fixedRateString = "${aggiornamentoGiacenzaProdotti}")
+	//@Scheduled(fixedRateString = "${aggiornamentoGiacenzaProdotti}")
 	public void aggiornaGiacenze() {
 
 		DataUltimaGiacenza dataUltimaGiacenza = new DataUltimaGiacenza();
@@ -290,7 +290,7 @@ public class JobsService {
 	 * }
 	 */
 
-	@Scheduled(fixedRateString = "${prova}")
+	//@Scheduled(fixedRateString = "${prova}")
 	public void prova() throws Exception {
 
 		// Aggiornamento anagrafiche prodotti
