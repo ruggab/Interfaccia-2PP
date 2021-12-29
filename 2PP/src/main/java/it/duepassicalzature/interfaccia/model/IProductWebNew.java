@@ -4,7 +4,7 @@ import java.util.Date;
 
 public interface IProductWebNew {
 
-    String getId_woo_commerce();
+    Integer getId_woo_commerce();
     String getTitolo();
     String getCategory_name();
     String getCodart();

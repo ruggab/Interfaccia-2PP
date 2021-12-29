@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,17 +29,18 @@ public class ProductController {
 	@Autowired
 	MappaturaRepository mappaturaRepository;
 
+//	@GetMapping("getProductsWebParent")
+//	public ResponseEntity<List<IProductWebNew>> getProductsWebParent() {
+//		List<IProductWebNew> listaMappProdPadre = mappaturaRepository.getProductsWebParent("",null,"","");
+//		return new ResponseEntity<List<IProductWebNew>>(listaMappProdPadre, HttpStatus.OK);
+//	}
+//	
+	
 	@GetMapping("getProductsWebParent")
-	public ResponseEntity<List<IProductWebNew>> getProductsWebParent() {
-		List<IProductWebNew> listaMappProdPadre = mappaturaRepository.getListParentProd();
+	public ResponseEntity<List<IProductWebNew>> getProductsWebParent(@RequestParam String  codart,
+			@RequestParam Integer id_woo, @RequestParam String stagione, @RequestParam String  brand) {
+		List<IProductWebNew> listaMappProdPadre = mappaturaRepository.getProductsWebParent(codart, id_woo, stagione, brand);
 		return new ResponseEntity<List<IProductWebNew>>(listaMappProdPadre, HttpStatus.OK);
-	}
-	
-	
-	@GetMapping("getProductsWebParentBySku/{codart}")
-	public ResponseEntity<List<MappaturaProdIdSku>> getProductsFatherByCodart(@PathVariable(value = "codart") String  codart) {
-		List<MappaturaProdIdSku> listaMappProdPadre = mappaturaRepository.getProdottiPadreBySku(codart);
-		return new ResponseEntity<List<MappaturaProdIdSku>>(listaMappProdPadre, HttpStatus.OK);
 	}
 	
 	@PostMapping("deleteproducts")
@@ -53,7 +55,7 @@ public class ProductController {
 			mappaturaRepository.deleteProdPadre(new Integer(idWooComm));
 		}
 		
-		List<IProductWebNew> listaMappProdPadre = mappaturaRepository.getListParentProd();
+		List<IProductWebNew> listaMappProdPadre = mappaturaRepository.getProductsWebParent("",null,"","");
 		return new ResponseEntity<List<IProductWebNew>>(listaMappProdPadre, HttpStatus.OK);
 	}
 	
