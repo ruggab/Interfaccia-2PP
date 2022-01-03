@@ -22,8 +22,7 @@ public interface MappaturaRepository extends JpaRepository<MappaturaProdIdSku, I
             "MAX(id_woo_commerce) as id_woo_commerce, MAX(parent_idwc) as parent_idwc, MAX(percentuale) as percentuale, MAX(stagione) as stagione, MAX(eanprod) as eanprod, MAX(category) as category, MAX(target) as target\n" +
             "FROM public.vproducts_web AS p\n" +
             "JOIN mappatura_prod_id_sku AS m ON m.sku = p.codart\n" +
-            "WHERE p.lastaction = 'U' AND lastupdate > (SELECT MAX(data_ultimo_aggiornamento)\n" +
-            " FROM public.data_ultimo_aggiornamento) \n" +
+            "WHERE p.lastaction = 'U' AND lastupdate > (SELECT MAX(data_ultimo_aggiornamento) FROM public.data_ultimo_aggiornamento) \n" +
             "GROUP BY TRIM(codart) ; " , nativeQuery = true)
     List<IUpdateProducts> aggiornamentoAnagraficaByCodart();
 
@@ -49,7 +48,7 @@ public interface MappaturaRepository extends JpaRepository<MappaturaProdIdSku, I
     
       
     @Query(value = "select distinct m.id_woo_commerce, p.titolo, p.category_name, p.codart, p.tipovariante progressivo, p.codcol,p.stagione,"
-    		+ " p.target, p.brand, p.pricesell*1.22 prezzo, p.percentuale, p.listinoweb1, p.qtaweb, p.lastupdate"
+    		+ " p.target, p.brand, p.pricesell prezzo, p.percentuale, p.listinoweb1, p.qtaweb, p.lastupdate"
     		+ " from vproducts_web_new p join mappatura_prod_id_sku m on p.codart = m.sku "
     		+ " where (?1 = '' or p.codart = ?1) and (?2 is null or m.id_woo_commerce = (CAST (CAST(?2 AS character varying) AS integer))) "
     		+ " and (?3 = '' or p.stagione = ?3) and (?4 = '' or p.brand = ?4) order by m.id_woo_commerce" , nativeQuery = true)
@@ -70,6 +69,24 @@ public interface MappaturaRepository extends JpaRepository<MappaturaProdIdSku, I
     
     @Query(value = "select distinct brand from vproducts_web_new " , nativeQuery = true)
     List<String> getBrands();
+    
+    //and p.lastaction = 'U' AND lastupdate > (SELECT MAX(data_ultimo_aggiornamento) FROM public.data_ultimo_aggiornamento)
+    @Query(value = "SELECT MIN(code) as code, MAX(pricesell) as pricesell, TRIM(codart) as codart, MAX(desccol) as desccol, MIN(taglia) as taglia, MAX(brand) as brand, MAX(descbreve) as descbreve," +
+            " MAX(titolo) as titolo, MAX(percorsodesc) as percorsodesc, MAX(listinoweb1) as listinoweb1, MAX(cat_json) as cat_json," +
+            " MAX(id_woo_commerce) as id_woo_commerce, MAX(parent_idwc) as parent_idwc, MAX(percentuale) as percentuale, MAX(stagione) as stagione, MAX(eanprod) as eanprod, MAX(category) as category, MAX(target) as target" +
+            " FROM public.vproducts_web AS p" +
+            " JOIN mappatura_prod_id_sku AS m ON m.sku = p.codart" +
+            " WHERE id_woo_commerce = ?1 " +
+            " GROUP BY TRIM(codart);" , nativeQuery = true)
+    List<IUpdateProducts> getListaProdDaAggiornareByIdWoo(Integer idWooComm);
+   
+    //AND lastaction = 'U' AND lastupdate > (SELECT MAX(data_ultimo_aggiornamento) FROM public.data_ultimo_aggiornamento)
+    @Query(value = "SELECT code, pricesell, codart, desccol, taglia, family, brand, descbreve, titolo, percorsodesc, listinoweb1, cat_json, id_woo_commerce, parent_idwc, eanprod" +
+            " FROM public.vproducts_web AS p" +
+            " JOIN mappatura_prod_id_sku AS m ON m.sku = p.code" +
+            " WHERE parent_idwc is not null AND id_woo_commerce = ?1" , nativeQuery = true)
+    List<IUpdateProducts> aggiornamentoPrezziByIdWoo(Integer idWooComm);
+    
   
 
 }

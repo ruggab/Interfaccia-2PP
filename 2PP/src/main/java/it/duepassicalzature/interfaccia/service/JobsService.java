@@ -295,13 +295,13 @@ public class JobsService {
 
 		// Aggiornamento anagrafiche prodotti
 		// log.info("Aggiornamento anagrafiche prodotti...");
-		 attributesService.aggiornaAttributi();
-		 productsService.aggiungiProdottiDaDBaWC();
-		 productsService.aggiornaProdotti();
+		// attributesService.aggiornaAttributi();
+	    productsService.aggiungiProdottiDaDBaWC();
+		//productsService.aggiornaProdotti();
 
 		// Aggiornamento prezzi prodotti
 		// log.info("Aggiornamento prezzi prodotti...");
-		 productsService.aggiornaPrezzi();
+		// productsService.aggiornaPrezzi();
 	}
 
 	// @Scheduled(fixedRateString = "${secondiaggiornamentoOrdiniDaAPIaDB}")

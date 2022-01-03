@@ -18,6 +18,7 @@ public class WooCommerceSecurity {
             byte[] encodedAuth = Base64.encodeBase64(
                     auth.getBytes(Charset.forName("US-ASCII")) );
             String authHeader = "Basic " + new String( encodedAuth );
+            //Basic Y2tfZTYxYmQ3MWNlMmNlZDk3YmZjMDQ5YTYyZjAyNjBlYjYzNTBkZjg1Zjpjc184MmQ0NTVkZmQ4ZWJiNjQyYjQ3NzRkYzEyNjhiOWU3YTQyYjA4Y2Nl
             set( "Authorization", authHeader );
         }};
     }
