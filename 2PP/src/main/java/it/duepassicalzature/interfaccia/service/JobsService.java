@@ -297,11 +297,11 @@ public class JobsService {
 		// log.info("Aggiornamento anagrafiche prodotti...");
 		// attributesService.aggiornaAttributi();
 	    productsService.aggiungiProdottiDaDBaWC();
-		//productsService.aggiornaProdotti();
+		productsService.aggiornaProdotti();
 
 		// Aggiornamento prezzi prodotti
 		// log.info("Aggiornamento prezzi prodotti...");
-		// productsService.aggiornaPrezzi();
+		 productsService.aggiornaPrezzi();
 	}
 
 	// @Scheduled(fixedRateString = "${secondiaggiornamentoOrdiniDaAPIaDB}")

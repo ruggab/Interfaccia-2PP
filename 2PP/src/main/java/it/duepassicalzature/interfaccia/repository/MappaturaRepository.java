@@ -84,7 +84,7 @@ public interface MappaturaRepository extends JpaRepository<MappaturaProdIdSku, I
     @Query(value = "SELECT code, pricesell, codart, desccol, taglia, family, brand, descbreve, titolo, percorsodesc, listinoweb1, cat_json, id_woo_commerce, parent_idwc, eanprod" +
             " FROM public.vproducts_web AS p" +
             " JOIN mappatura_prod_id_sku AS m ON m.sku = p.code" +
-            " WHERE parent_idwc is not null AND id_woo_commerce = ?1" , nativeQuery = true)
+            " WHERE parent_idwc = ?1" , nativeQuery = true)
     List<IUpdateProducts> aggiornamentoPrezziByIdWoo(Integer idWooComm);
     
   
