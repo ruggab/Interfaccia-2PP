@@ -86,12 +86,23 @@ public class ProductController {
 		String[] listIdWooComm = params.split(",");
 
 		for (String idWooComm : listIdWooComm) {
-			mappaturaRepository.deleteProdFiglio(new Integer(idWooComm));
-			mappaturaRepository.deleteProdPadre(new Integer(idWooComm));
-			String urlDelProduct = "https://duepassicalzature.it/wp-json/wc/v3/products/" + idWooComm + "?force=true";
-			HttpEntity<?> request = new HttpEntity<Object>(headers);
-			restTemplate.exchange(urlDelProduct, HttpMethod.DELETE, request, String.class);
-			//restTemplate.delete(urlDelProduct, headers);
+			try {
+				mappaturaRepository.deleteProdFiglio(new Integer(idWooComm));
+				log.info("Cancellato prodotto figlio dalla tabella Mappatura con idWooCommerce " + idWooComm);
+				mappaturaRepository.deleteProdPadre(new Integer(idWooComm));
+				log.info("Cancellato prodotto Padre dalla tabella Mappatura con idWooCommerce " + idWooComm);
+			} catch (Exception e) {
+				log.error("Errore cancellazione da DB");
+			}
+			try {
+				String urlDelProduct = "https://duepassicalzature.it/wp-json/wc/v3/products/" + idWooComm + "?force=true";
+				HttpEntity<?> request = new HttpEntity<Object>(headers);
+				restTemplate.exchange(urlDelProduct, HttpMethod.DELETE, request, String.class);
+				log.info("Cancellato prodotto con ID WooCommerce " + idWooComm);
+				//restTemplate.delete(urlDelProduct, headers);
+			} catch (Exception e) {
+				log.error("Errore cancellazione da Woocommerce");
+			}
 		}
 
 		List<IProductWebNew> listaMappProdPadre = mappaturaRepository.getProductsWebParent("", null, "", "");

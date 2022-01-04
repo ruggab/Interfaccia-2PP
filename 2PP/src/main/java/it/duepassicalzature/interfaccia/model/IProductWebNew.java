@@ -11,7 +11,7 @@ public interface IProductWebNew {
     String getProgressivo();
     String getCodcol();
     String getStagione();
-    String getTarget();
+    String getTargetVal();
     String getBrand();
     Double getPrezzo();
     String getPercentuale();

@@ -48,7 +48,7 @@ public interface MappaturaRepository extends JpaRepository<MappaturaProdIdSku, I
     
       
     @Query(value = "select distinct m.id_woo_commerce, p.titolo, p.category_name, p.codart, p.tipovariante progressivo, p.codcol,p.stagione,"
-    		+ " p.target, p.brand, p.pricesell prezzo, p.percentuale, p.listinoweb1, p.qtaweb, p.lastupdate"
+    		+ " p.target as targetVal, p.brand, p.pricesell prezzo, p.percentuale, p.listinoweb1, p.qtaweb, p.lastupdate"
     		+ " from vproducts_web_new p join mappatura_prod_id_sku m on p.codart = m.sku "
     		+ " where (?1 = '' or p.codart = ?1) and (?2 is null or m.id_woo_commerce = (CAST (CAST(?2 AS character varying) AS integer))) "
     		+ " and (?3 = '' or p.stagione = ?3) and (?4 = '' or p.brand = ?4) order by m.id_woo_commerce" , nativeQuery = true)
@@ -64,10 +64,10 @@ public interface MappaturaRepository extends JpaRepository<MappaturaProdIdSku, I
     void deleteProdPadre(Integer idWooComm);
     
     
-    @Query(value = "select distinct stagione from vproducts_web_new " , nativeQuery = true)
+    @Query(value = "select '' as stagione union select distinct stagione from vproducts_web_new order by stagione" , nativeQuery = true)
     List<String> getStagioni();
     
-    @Query(value = "select distinct brand from vproducts_web_new " , nativeQuery = true)
+    @Query(value = "select '' as brand union select distinct brand from vproducts_web_new order by brand" , nativeQuery = true)
     List<String> getBrands();
     
     //and p.lastaction = 'U' AND lastupdate > (SELECT MAX(data_ultimo_aggiornamento) FROM public.data_ultimo_aggiornamento)
