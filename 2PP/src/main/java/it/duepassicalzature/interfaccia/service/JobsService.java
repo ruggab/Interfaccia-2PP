@@ -48,7 +48,7 @@ public class JobsService {
 
 	Logger log = LoggerFactory.getLogger(JobsService.class);
 
-	//@Scheduled(cron = "${aggiornamentoAnagraficaProdotti}", zone = "Europe/Paris")
+	@Scheduled(cron = "${aggiornamentoAnagraficaProdotti}", zone = "Europe/Paris")
 	public void productsJob() throws IOException {
 
 		// Inserimento delle nuove categorie
@@ -88,7 +88,7 @@ public class JobsService {
 
 	}
 
-	//@Scheduled(fixedRateString = "${aggiornamentoGiacenzaProdotti}")
+	@Scheduled(fixedRateString = "${aggiornamentoGiacenzaProdotti}")
 	public void aggiornaGiacenze() {
 
 		DataUltimaGiacenza dataUltimaGiacenza = new DataUltimaGiacenza();
@@ -304,7 +304,7 @@ public class JobsService {
 		// productsService.aggiornaPrezzi();
 	}
 
-	// @Scheduled(fixedRateString = "${secondiaggiornamentoOrdiniDaAPIaDB}")
+	//@Scheduled(fixedRateString = "${secondiaggiornamentoOrdiniDaAPIaDB}")
 	public void pezza() {
 
 		String urlModificametadata = "https://duepassicalzature.it/wp-json/wc/v3/products/";
