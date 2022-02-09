@@ -79,7 +79,7 @@ public class JobsService {
 
 	}
 
-	//@Scheduled(cron = "${aggiornamentoImmaginiProdotti}", zone = "Europe/Paris")
+	@Scheduled(cron = "${aggiornamentoImmaginiProdotti}", zone = "Europe/Paris")
 	public void aggiornaImmagini() throws IOException {
 
 		// Aggiornamento nuove immagini
@@ -295,13 +295,18 @@ public class JobsService {
 
 		// Aggiornamento anagrafiche prodotti
 		// log.info("Aggiornamento anagrafiche prodotti...");
-		// attributesService.aggiornaAttributi();
-	    productsService.aggiungiProdottiDaDBaWC();
-		//productsService.aggiornaProdotti();
-
-		// Aggiornamento prezzi prodotti
-		// log.info("Aggiornamento prezzi prodotti...");
-		// productsService.aggiornaPrezzi();
+		
+		log.info("Aggiornamento delle nuove categorie...");
+		categoriesService.aggiornaCategorie();
+		
+		
+//		attributesService.aggiornaAttributi();
+//	    productsService.aggiungiProdottiDaDBaWC();
+//		productsService.aggiornaProdotti();
+//
+//		// Aggiornamento prezzi prodotti
+//		// log.info("Aggiornamento prezzi prodotti...");
+//		 productsService.aggiornaPrezzi();
 	}
 
 	//@Scheduled(fixedRateString = "${secondiaggiornamentoOrdiniDaAPIaDB}")

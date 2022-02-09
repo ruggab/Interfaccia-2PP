@@ -18,7 +18,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import it.duepassicalzature.interfaccia.DTO.MappaturaProdIdSku;
 import it.duepassicalzature.interfaccia.model.Attributes;
 import it.duepassicalzature.interfaccia.model.IProductWebNew;
 import it.duepassicalzature.interfaccia.model.IUpdateProducts;
@@ -148,11 +146,23 @@ public class ProductController {
 
 		int tagId = 1113;
 		switch (percentuale) {
+		case "10%":
+			tagId = 1145;
+			break;
 		case "20%":
 			tagId = 1115;
 			break;
+		case "30%":
+			tagId = 1132;
+			break;
+		case "40%":
+			tagId = 1143;
+			break;
 		case "50%":
 			tagId = 1114;
+			break;
+		case "60%":
+			tagId = 1144;
 			break;
 		case "70%":
 			tagId = 1112;
@@ -290,7 +300,7 @@ public class ProductController {
 				JSONObject metaDataGitEan = new JSONObject();
 				metaDataGitEan.put("key", "_woosea_gtin");
 				metaDataGitEan.put("value", p.getEanprod());
-				metaData.put(metaDataGitEan);
+				metaData.put(metaDataGitEan); 
 				productJsonObject.put("meta_data", metaData);
 			} catch (Exception e) {
 				e.printStackTrace();

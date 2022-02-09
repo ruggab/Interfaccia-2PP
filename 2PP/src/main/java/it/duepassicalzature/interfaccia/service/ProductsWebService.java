@@ -552,11 +552,23 @@ public class ProductsWebService {
 
 		int tagId = 1113;
 		switch (percentuale) {
+		case "10%":
+			tagId = 1145;
+			break;
 		case "20%":
 			tagId = 1115;
 			break;
+		case "30%":
+			tagId = 1132;
+			break;
+		case "40%":
+			tagId = 1143;
+			break;
 		case "50%":
 			tagId = 1114;
+			break;
+		case "60%":
+			tagId = 1144;
 			break;
 		case "70%":
 			tagId = 1112;

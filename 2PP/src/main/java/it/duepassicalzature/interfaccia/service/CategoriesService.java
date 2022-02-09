@@ -1,25 +1,25 @@
 package it.duepassicalzature.interfaccia.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import it.duepassicalzature.interfaccia.DTO.MappaturaCatIdDbId;
-import it.duepassicalzature.interfaccia.model.ICategoriesWeb;
-import it.duepassicalzature.interfaccia.repository.DataAggiornamentoRepository;
-import it.duepassicalzature.interfaccia.repository.MappaturaCategorieRepository;
-import it.duepassicalzature.interfaccia.security.WooCommerceSecurity;
-import org.json.JSONArray;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
+import it.duepassicalzature.interfaccia.DTO.MappaturaCatIdDbId;
+import it.duepassicalzature.interfaccia.model.ICategoriesWeb;
+import it.duepassicalzature.interfaccia.repository.DataAggiornamentoRepository;
+import it.duepassicalzature.interfaccia.repository.MappaturaCategorieRepository;
+import it.duepassicalzature.interfaccia.security.WooCommerceSecurity;
 
 @Service
 public class CategoriesService {
